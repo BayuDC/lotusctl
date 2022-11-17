@@ -6,5 +6,17 @@
         Width="640" Height="480"
         CanResize="False"
         Title="lotusctl">
-    Welcome to Avalonia!
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="120"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>        
+        <Rectangle Fill="Red" Grid.Row="0" Grid.Column="0" />
+        <Rectangle Fill="Blue" Grid.Row="0" Grid.Column="1" />
+        <Rectangle Fill="Green" Grid.Row="1" Grid.Column="0" />
+    </Grid>
 </Window>
