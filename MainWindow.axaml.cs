@@ -38,17 +38,17 @@ namespace lotusctl {
             _serviceSelected = _services[index];
 
         }
-        private void OnBtnStartClick(object? sender, RoutedEventArgs e) {
+        private async void OnBtnStartClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
-            Systemd.Start(_serviceSelected.CodeName);
+            TxtOutput.Text = await Systemd.Start(_serviceSelected.CodeName);
         }
-        private void OnBtnStopClick(object? sender, RoutedEventArgs e) {
+        private async void OnBtnStopClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
-            Systemd.Stop(_serviceSelected.CodeName);
+            TxtOutput.Text = await Systemd.Stop(_serviceSelected.CodeName);
         }
-        private void OnBtnRestartClick(object? sender, RoutedEventArgs e) {
+        private async void OnBtnRestartClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
-            Systemd.Restart(_serviceSelected.CodeName);
+            TxtOutput.Text = await Systemd.Restart(_serviceSelected.CodeName);
         }
 
         private void EnableButtons(bool enable = true) {

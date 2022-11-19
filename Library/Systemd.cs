@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using CliWrap;
 using CliWrap.Buffered;
@@ -18,23 +19,19 @@ namespace lotusctl.Library {
                 services[i].IsActive = status[i] == "active";
             }
         }
-        public async static void Start(string serviceName) {
-            var result = await GetBasicCommand("start", serviceName)
-                .ExecuteAsync();
-        }
-        public async static void Stop(string serviceName) {
-            var result = await GetBasicCommand("stop", serviceName)
-                .ExecuteAsync();
-        }
-        public async static void Restart(string serviceName) {
-            var result = await GetBasicCommand("restart", serviceName)
-                .ExecuteAsync();
-        }
+        public async static Task<string> Start(string serviceName)
+            => await RunBasicCommand("start", serviceName);
+        public async static Task<string> Stop(string serviceName)
+            => await RunBasicCommand("stop", serviceName);
+        public async static Task<string> Restart(string serviceName)
+            => await RunBasicCommand("restart", serviceName);
 
-        private static Command GetBasicCommand(string command, string argument) {
-            return Cli.Wrap("systemctl")
+        private async static Task<string> RunBasicCommand(string command, string argument) {
+            var result = await Cli.Wrap("systemctl")
                 .WithArguments($"{command} {argument}")
-                .WithValidation(CommandResultValidation.None);
+                .WithValidation(CommandResultValidation.None)
+                .ExecuteBufferedAsync();
+            return result.StandardOutput + result.StandardError;
         }
     }
 }
