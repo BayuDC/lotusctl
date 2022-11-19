@@ -48,7 +48,7 @@
 				Remove
 			</Button>
 		</StackPanel>
-		<TextBox Name="TxtOutput" Margin="5" IsReadOnly="True" Focusable="False"
+		<TextBox Name="TxtOutput" Margin="5" IsReadOnly="True" Focusable="False" FontFamily="monospace"
 			Grid.Row="1" Grid.Column="0" />
 	</Grid>
 </Window>
