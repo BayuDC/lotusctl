@@ -15,10 +15,14 @@ namespace lotusctl {
                 new Service("nginx", "Nginx"),
                 new Service("mariadb", "MariaDB"),
                 new Service("postgresql", "PostgreSQL"),
+                new Service("docker", "Docker"),
             };
         }
         private void OnWindowLoad(object? sender, EventArgs e) {
-            LstService.Items = _services.Select(s => s.DisplayName).ToArray();
+            Systemd.Status(_services);
+            LstService.Items = _services
+                .Select(s => $"{(s.IsActive ? "🍏" : "🍎")}  {s.DisplayName}")
+                .ToArray();
             EnableButtons(false);
         }
         private void OnLstServiceSelect(object? sender, SelectionChangedEventArgs e) {
@@ -26,7 +30,7 @@ namespace lotusctl {
             if (index < 0) {
                 EnableButtons(false);
             } else {
-                EnableButtons(true);
+                EnableButtons();
             }
 
             Console.WriteLine(index);

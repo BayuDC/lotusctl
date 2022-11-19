@@ -3,6 +3,8 @@ namespace lotusctl.Library {
         public string DisplayName;
         public string CodeName;
 
+        public bool IsActive;
+
         public Service(string codeName) {
             this.DisplayName = this.CodeName = codeName;
         }
