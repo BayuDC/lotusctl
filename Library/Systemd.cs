@@ -18,5 +18,23 @@ namespace lotusctl.Library {
                 services[i].IsActive = status[i] == "active";
             }
         }
+        public async static void Start(string serviceName) {
+            var result = await GetBasicCommand("start", serviceName)
+                .ExecuteAsync();
+        }
+        public async static void Stop(string serviceName) {
+            var result = await GetBasicCommand("stop", serviceName)
+                .ExecuteAsync();
+        }
+        public async static void Restart(string serviceName) {
+            var result = await GetBasicCommand("restart", serviceName)
+                .ExecuteAsync();
+        }
+
+        private static Command GetBasicCommand(string command, string argument) {
+            return Cli.Wrap("systemctl")
+                .WithArguments($"{command} {argument}")
+                .WithValidation(CommandResultValidation.None);
+        }
     }
 }

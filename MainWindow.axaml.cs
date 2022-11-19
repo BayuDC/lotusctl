@@ -7,7 +7,9 @@ using lotusctl.Library;
 
 namespace lotusctl {
     public partial class MainWindow : Window {
-        public List<Service> _services;
+        private List<Service> _services;
+        private Service? _serviceSelected;
+
         public MainWindow() {
             InitializeComponent();
             _services = new List<Service> {
@@ -29,11 +31,24 @@ namespace lotusctl {
             var index = LstService.SelectedIndex;
             if (index < 0) {
                 EnableButtons(false);
-            } else {
-                EnableButtons();
+                _serviceSelected = null;
+                return;
             }
+            EnableButtons();
+            _serviceSelected = _services[index];
 
-            Console.WriteLine(index);
+        }
+        private void OnBtnStartClick(object? sender, RoutedEventArgs e) {
+            if (_serviceSelected == null) return;
+            Systemd.Start(_serviceSelected.CodeName);
+        }
+        private void OnBtnStopClick(object? sender, RoutedEventArgs e) {
+            if (_serviceSelected == null) return;
+            Systemd.Stop(_serviceSelected.CodeName);
+        }
+        private void OnBtnRestartClick(object? sender, RoutedEventArgs e) {
+            if (_serviceSelected == null) return;
+            Systemd.Restart(_serviceSelected.CodeName);
         }
 
         private void EnableButtons(bool enable = true) {
