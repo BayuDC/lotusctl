@@ -55,9 +55,13 @@ namespace lotusctl {
             TxtOutput.Text = await Systemd.Status(_serviceSelected.CodeName);
         }
 
-        private void EnableButtons(bool enable = true) {
-            BtnStart.IsEnabled = BtnStop.IsEnabled = BtnRestart.IsEnabled = BtnRemove.IsEnabled = enable;
-        }
+        private void EnableButtons(bool enable = true) =>
+            BtnStart.IsEnabled =
+            BtnStop.IsEnabled =
+            BtnRestart.IsEnabled =
+            BtnStatus.IsEnabled =
+            enable;
+
         private async void LoadServicesData() {
             await Systemd.Load(_services);
             LstService.Items = _services

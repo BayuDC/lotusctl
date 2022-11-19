@@ -39,14 +39,6 @@
 				HorizontalContentAlignment="Center" Click="OnBtnStatusClick">
 				Status
 			</Button>
-			<Button Name="BtnAdd" Width="120" Margin="0, 0, 0, 5"
-				HorizontalContentAlignment="Center">
-				Add
-			</Button>
-			<Button Name="BtnRemove" Width="120" Margin="0, 0, 0, 5"
-				HorizontalContentAlignment="Center">
-				Remove
-			</Button>
 		</StackPanel>
 		<TextBox Name="TxtOutput" Margin="5" IsReadOnly="True" Focusable="False" FontFamily="monospace"
 			Grid.Row="1" Grid.Column="0" />
