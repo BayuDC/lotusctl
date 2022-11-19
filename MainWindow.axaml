@@ -19,27 +19,27 @@
 		<Border Margin="5"
 			BorderBrush="White" BorderThickness="1" CornerRadius="1"
 			Grid.Row="0" Grid.Column="0">
-			<ListBox Name="LstService" />
+			<ListBox Name="LstService" SelectionChanged="OnLstServiceSelect" />
 		</Border>
 		<StackPanel Margin="5"
 			Grid.Row="0" Grid.Column="1">
-			<Button Width="120" Margin="0, 0, 0, 5"
+			<Button Name="BtnStart" Width="120" Margin="0, 0, 0, 5"
 				HorizontalContentAlignment="Center">
 				Start
 			</Button>
-			<Button Width="120" Margin="0, 0, 0, 5"
+			<Button Name="BtnStop" Width="120" Margin="0, 0, 0, 5"
 				HorizontalContentAlignment="Center">
 				Stop
 			</Button>
-			<Button Width="120" Margin="0, 0, 0, 5"
+			<Button Name="BtnRestart" Width="120" Margin="0, 0, 0, 5"
 				HorizontalContentAlignment="Center">
 				Restart
 			</Button>
-			<Button Width="120" Margin="0, 0, 0, 5"
+			<Button Name="BtnAdd" Width="120" Margin="0, 0, 0, 5"
 				HorizontalContentAlignment="Center">
 				Add
 			</Button>
-			<Button Width="120" Margin="0, 0, 0, 5"
+			<Button Name="BtnRemove" Width="120" Margin="0, 0, 0, 5"
 				HorizontalContentAlignment="Center">
 				Remove
 			</Button>
