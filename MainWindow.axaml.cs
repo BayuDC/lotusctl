@@ -1,11 +1,8 @@
 using Avalonia.Controls;
 
-namespace lotusctl
-{
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
+namespace lotusctl {
+    public partial class MainWindow : Window {
+        public MainWindow() {
             InitializeComponent();
         }
     }

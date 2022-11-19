@@ -6,17 +6,48 @@
         Width="640" Height="480"
         CanResize="False"
         Title="lotusctl">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="120"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>        
-        <Rectangle Fill="Red" Grid.Row="0" Grid.Column="0" />
-        <Rectangle Fill="Blue" Grid.Row="0" Grid.Column="1" />
-        <Rectangle Fill="Green" Grid.Row="1" Grid.Column="0" />
-    </Grid>
+	<Grid Margin="10">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="2*"/>
+			<RowDefinition Height="1*"/>
+		</Grid.RowDefinitions>
+
+		<Border Margin="5"
+			BorderBrush="White" BorderThickness="1" CornerRadius="1"
+			Grid.Row="0" Grid.Column="0">
+			<ListBox Name="LstService">
+				<ListBoxItem>Service 1</ListBoxItem>
+				<ListBoxItem>Service 2</ListBoxItem>
+			</ListBox>
+		</Border>
+		<StackPanel Margin="5"
+			Grid.Row="0" Grid.Column="1">
+			<Button Width="120" Margin="0, 0, 0, 5"
+				HorizontalContentAlignment="Center">
+				Start
+			</Button>
+			<Button Width="120" Margin="0, 0, 0, 5"
+				HorizontalContentAlignment="Center">
+				Stop
+			</Button>
+			<Button Width="120" Margin="0, 0, 0, 5"
+				HorizontalContentAlignment="Center">
+				Restart
+			</Button>
+			<Button Width="120" Margin="0, 0, 0, 5"
+				 HorizontalContentAlignment="Center">
+				Add
+			</Button>
+			<Button Width="120" Margin="0, 0, 0, 5"
+				HorizontalContentAlignment="Center">
+				Remove
+			</Button>
+		</StackPanel>
+		<TextBox Margin="5" IsReadOnly="True" Focusable="False"
+			Grid.Row="1" Grid.Column="0" />
+	</Grid>
 </Window>
