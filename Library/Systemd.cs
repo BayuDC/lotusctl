@@ -7,7 +7,7 @@ using CliWrap.Buffered;
 
 namespace lotusctl.Library {
     public static class Systemd {
-        public async static void Load(List<Service> services) {
+        public async static Task Load(List<Service> services) {
             var serviceList = services.Aggregate("", (acc, service) => $"{acc} {service.CodeName}");
             var result = await Cli.Wrap("systemctl")
                 .WithArguments("is-active" + serviceList)
@@ -21,8 +21,11 @@ namespace lotusctl.Library {
         }
         public async static Task<string> Start(string serviceName)
             => await RunBasicCommand("start", serviceName);
-        public async static Task<string> Stop(string serviceName)
-            => await RunBasicCommand("stop", serviceName);
+        public async static Task<string> Stop(string serviceName) {
+            var a =
+                await RunBasicCommand("stop", serviceName);
+            return a;
+        }
         public async static Task<string> Restart(string serviceName)
             => await RunBasicCommand("restart", serviceName);
         public async static Task<string> Status(string serviceName)
