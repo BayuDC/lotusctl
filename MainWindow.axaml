@@ -35,6 +35,10 @@
 				HorizontalContentAlignment="Center" Click="OnBtnRestartClick">
 				Restart
 			</Button>
+			<Button Name="BtnStatus" Width="120" Margin="0, 0, 0, 5"
+				HorizontalContentAlignment="Center" Click="OnBtnStatusClick">
+				Status
+			</Button>
 			<Button Name="BtnAdd" Width="120" Margin="0, 0, 0, 5"
 				HorizontalContentAlignment="Center">
 				Add

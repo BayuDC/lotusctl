@@ -21,7 +21,7 @@ namespace lotusctl {
             };
         }
         private void OnWindowLoad(object? sender, EventArgs e) {
-            Systemd.Status(_services);
+            Systemd.Load(_services);
             LstService.Items = _services
                 .Select(s => $"{(s.IsActive ? "🍏" : "🍎")}  {s.DisplayName}")
                 .ToArray();
@@ -49,6 +49,10 @@ namespace lotusctl {
         private async void OnBtnRestartClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
             TxtOutput.Text = await Systemd.Restart(_serviceSelected.CodeName);
+        }
+        private async void OnBtnStatusClick(object? sender, RoutedEventArgs e) {
+            if (_serviceSelected == null) return;
+            TxtOutput.Text = await Systemd.Status(_serviceSelected.CodeName);
         }
 
         private void EnableButtons(bool enable = true) {
