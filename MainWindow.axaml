@@ -1,28 +1,25 @@
 <Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" x:Class="lotusctl.MainWindow"
-        Width="640" Height="480"
-        CanResize="False"
-        Title="lotusctl">
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d" x:Class="lotusctl.MainWindow"
+	Width="640" Height="480"
+	Opened="OnWindowLoad"
+	CanResize="False" Title="lotusctl">
 	<Grid Margin="10">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
-			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto" />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="2*"/>
-			<RowDefinition Height="1*"/>
+			<RowDefinition Height="2*" />
+			<RowDefinition Height="1*" />
 		</Grid.RowDefinitions>
 
 		<Border Margin="5"
 			BorderBrush="White" BorderThickness="1" CornerRadius="1"
 			Grid.Row="0" Grid.Column="0">
-			<ListBox Name="LstService">
-				<ListBoxItem>Service 1</ListBoxItem>
-				<ListBoxItem>Service 2</ListBoxItem>
-			</ListBox>
+			<ListBox Name="LstService" />
 		</Border>
 		<StackPanel Margin="5"
 			Grid.Row="0" Grid.Column="1">
@@ -39,7 +36,7 @@
 				Restart
 			</Button>
 			<Button Width="120" Margin="0, 0, 0, 5"
-				 HorizontalContentAlignment="Center">
+				HorizontalContentAlignment="Center">
 				Add
 			</Button>
 			<Button Width="120" Margin="0, 0, 0, 5"
