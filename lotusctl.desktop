@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Lotusctl
+Exec=/usr/bin/lotusctl
+Terminal=false
+Type=Application
+# Icon=
