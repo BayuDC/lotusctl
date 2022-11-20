@@ -8,7 +8,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using lotusctl.Library;
 
-namespace lotusctl {
+namespace lotusctl.Views {
     public partial class MainWindow : Window {
         private List<Service> _services = new List<Service>();
         private Service? _serviceSelected = null;
