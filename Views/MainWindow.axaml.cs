@@ -92,7 +92,16 @@ namespace lotusctl.Views {
                 .ToArray();
         }
         private void LoadConfiguration() {
-            foreach (var line in CsvReader.ReadFromText(File.ReadAllText("./services.csv"))) {
+            var dirName = $"/home/{Environment.UserName}/.config/lotusctl";
+            var fileName = $"{dirName}/services.csv";
+            if (!File.Exists(fileName)) {
+                if (!Directory.Exists(dirName)) {
+                    Directory.CreateDirectory(dirName);
+                }
+                File.Copy("./services.csv", fileName);
+            }
+
+            foreach (var line in CsvReader.ReadFromText(File.ReadAllText(fileName))) {
                 _services.Add(new Service(line[0], line[1]));
             }
         }
