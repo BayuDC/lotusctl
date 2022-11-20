@@ -9,6 +9,9 @@ namespace lotusctl.Library {
             this.DisplayName = this.CodeName = codeName;
         }
         public Service(string codeName, string displayName) {
+            if (string.IsNullOrEmpty(displayName)) {
+                displayName = codeName;
+            }
             this.DisplayName = displayName;
             this.CodeName = codeName;
         }

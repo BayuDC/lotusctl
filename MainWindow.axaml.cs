@@ -1,24 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using Csv;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using lotusctl.Library;
 
 namespace lotusctl {
     public partial class MainWindow : Window {
-        private List<Service> _services;
-        private Service? _serviceSelected;
+        private List<Service> _services = new List<Service>();
+        private Service? _serviceSelected = null;
 
         public MainWindow() {
             InitializeComponent();
-            _services = new List<Service> {
-                new Service("apache2", "Apache"),
-                new Service("nginx", "Nginx"),
-                new Service("mariadb", "MariaDB"),
-                new Service("postgresql", "PostgreSQL"),
-                new Service("docker", "Docker"),
-            };
+            LoadConfiguration();
         }
         private void OnWindowLoad(object? sender, EventArgs e) {
             EnableButtons(false);
@@ -67,6 +63,11 @@ namespace lotusctl {
             LstService.Items = _services
                 .Select(s => $"{(s.IsActive ? "🍏" : "🍎")}  {s.DisplayName}")
                 .ToArray();
+        }
+        private void LoadConfiguration() {
+            foreach (var line in CsvReader.ReadFromText(File.ReadAllText("./services.csv"))) {
+                _services.Add(new Service(line[0], line[1]));
+            }
         }
     }
 }
