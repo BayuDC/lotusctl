@@ -33,22 +33,30 @@ namespace lotusctl {
         }
         private async void OnBtnStartClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
+            Pause();
             TxtOutput.Text = await Systemd.Start(_serviceSelected.CodeName);
             LoadServicesData();
+            Resume();
         }
         private async void OnBtnStopClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
+            Pause();
             TxtOutput.Text = await Systemd.Stop(_serviceSelected.CodeName);
             LoadServicesData();
+            Resume();
         }
         private async void OnBtnRestartClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
+            Pause();
             TxtOutput.Text = await Systemd.Restart(_serviceSelected.CodeName);
             LoadServicesData();
+            Resume();
         }
         private async void OnBtnStatusClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
+            Pause();
             TxtOutput.Text = await Systemd.Status(_serviceSelected.CodeName);
+            Resume();
         }
 
         private void EnableButtons(bool enable = true) =>
@@ -68,6 +76,16 @@ namespace lotusctl {
             foreach (var line in CsvReader.ReadFromText(File.ReadAllText("./services.csv"))) {
                 _services.Add(new Service(line[0], line[1]));
             }
+        }
+
+        private void Pause() {
+            LstService.IsEnabled = false;
+            TxtOutput.Text = "...";
+            EnableButtons(false);
+        }
+        private void Resume() {
+            LstService.IsEnabled = true;
+            EnableButtons(true);
         }
     }
 }
