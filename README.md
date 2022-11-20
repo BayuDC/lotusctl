@@ -1,5 +1,7 @@
 # Lotusctl
 
+![Banner](https://media.discordapp.net/attachments/946013429200723989/1043883049642885251/Frame_2.png)
+
 A simple systemd service manager.
 I made this app because I was too lazy to write `systemctl restart ...` again and again.
 I know using the terminal is cool but sometimes it gets tiring.
