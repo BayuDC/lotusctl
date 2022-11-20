@@ -24,19 +24,19 @@
 		<StackPanel Margin="5"
 			Grid.Row="0" Grid.Column="1">
 			<Button Name="BtnStart" Width="120" Margin="0, 0, 0, 5"
-				HorizontalContentAlignment="Center" Click="OnBtnStartClick">
+				HorizontalContentAlignment="Center" Click="OnBtnClick">
 				Start
 			</Button>
 			<Button Name="BtnStop" Width="120" Margin="0, 0, 0, 5"
-				HorizontalContentAlignment="Center" Click="OnBtnStopClick">
+				HorizontalContentAlignment="Center" Click="OnBtnClick">
 				Stop
 			</Button>
 			<Button Name="BtnRestart" Width="120" Margin="0, 0, 0, 5"
-				HorizontalContentAlignment="Center" Click="OnBtnRestartClick">
+				HorizontalContentAlignment="Center" Click="OnBtnClick">
 				Restart
 			</Button>
 			<Button Name="BtnStatus" Width="120" Margin="0, 0, 0, 5"
-				HorizontalContentAlignment="Center" Click="OnBtnStatusClick">
+				HorizontalContentAlignment="Center" Click="OnBtnClick">
 				Status
 			</Button>
 		</StackPanel>

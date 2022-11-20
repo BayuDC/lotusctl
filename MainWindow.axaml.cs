@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Linq;
 using System.IO;
 using Csv;
@@ -31,32 +32,43 @@ namespace lotusctl {
             _serviceSelected = _services[index];
 
         }
-        private async void OnBtnStartClick(object? sender, RoutedEventArgs e) {
-            if (_serviceSelected == null) return;
+        private async void OnBtnClick(object? sender, RoutedEventArgs e) {
             Pause();
+            var button = sender != null ? (Button)sender : null;
+            switch (button?.Name) {
+                case "BtnStart":
+                    await OnBtnStartClick(sender, e);
+                    break;
+                case "BtnStop":
+                    await OnBtnStopClick(sender, e);
+                    break;
+                case "BtnRestart":
+                    await OnBtnRestartClick(sender, e);
+                    break;
+                case "BtnStatus":
+                    await OnBtnStatusClick(sender, e);
+                    break;
+            }
+            Resume();
+        }
+        private async Task OnBtnStartClick(object? sender, RoutedEventArgs e) {
+            if (_serviceSelected == null) return;
             TxtOutput.Text = await Systemd.Start(_serviceSelected.CodeName);
             LoadServicesData();
-            Resume();
         }
-        private async void OnBtnStopClick(object? sender, RoutedEventArgs e) {
+        private async Task OnBtnStopClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
-            Pause();
             TxtOutput.Text = await Systemd.Stop(_serviceSelected.CodeName);
             LoadServicesData();
-            Resume();
         }
-        private async void OnBtnRestartClick(object? sender, RoutedEventArgs e) {
+        private async Task OnBtnRestartClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
-            Pause();
             TxtOutput.Text = await Systemd.Restart(_serviceSelected.CodeName);
             LoadServicesData();
-            Resume();
         }
-        private async void OnBtnStatusClick(object? sender, RoutedEventArgs e) {
+        private async Task OnBtnStatusClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
-            Pause();
             TxtOutput.Text = await Systemd.Status(_serviceSelected.CodeName);
-            Resume();
         }
 
         private void EnableButtons(bool enable = true) =>
