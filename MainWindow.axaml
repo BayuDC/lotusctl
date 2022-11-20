@@ -39,6 +39,10 @@
 				HorizontalContentAlignment="Center" Click="OnBtnClick">
 				Status
 			</Button>
+			<Button Name="BtnRefresh" Width="120" Margin="0, 0, 0, 5"
+				HorizontalContentAlignment="Center" Click="OnBtnRefreshClick">
+				Refresh
+			</Button>
 		</StackPanel>
 		<TextBox Name="TxtOutput" Margin="5" IsReadOnly="True" Focusable="False" FontFamily="monospace"
 			Grid.Row="1" Grid.Column="0" />

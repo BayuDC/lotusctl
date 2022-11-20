@@ -17,9 +17,9 @@ namespace lotusctl {
             InitializeComponent();
             LoadConfiguration();
         }
-        private void OnWindowLoad(object? sender, EventArgs e) {
+        private async void OnWindowLoad(object? sender, EventArgs e) {
             EnableButtons(false);
-            LoadServicesData();
+            await LoadServicesData();
         }
         private void OnLstServiceSelect(object? sender, SelectionChangedEventArgs e) {
             var index = LstService.SelectedIndex;
@@ -54,21 +54,28 @@ namespace lotusctl {
         private async Task OnBtnStartClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
             TxtOutput.Text = await Systemd.Start(_serviceSelected.CodeName);
-            LoadServicesData();
+            await LoadServicesData();
         }
         private async Task OnBtnStopClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
             TxtOutput.Text = await Systemd.Stop(_serviceSelected.CodeName);
-            LoadServicesData();
+            await LoadServicesData();
         }
         private async Task OnBtnRestartClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
             TxtOutput.Text = await Systemd.Restart(_serviceSelected.CodeName);
-            LoadServicesData();
+            await LoadServicesData();
         }
         private async Task OnBtnStatusClick(object? sender, RoutedEventArgs e) {
             if (_serviceSelected == null) return;
             TxtOutput.Text = await Systemd.Status(_serviceSelected.CodeName);
+        }
+        private async void OnBtnRefreshClick(object? sender, RoutedEventArgs e) {
+            Pause();
+            await LoadServicesData();
+            TxtOutput.Text = "";
+            LstService.IsEnabled = true;
+            BtnRefresh.IsEnabled = true;
         }
 
         private void EnableButtons(bool enable = true) =>
@@ -78,7 +85,7 @@ namespace lotusctl {
             BtnStatus.IsEnabled =
             enable;
 
-        private async void LoadServicesData() {
+        private async Task LoadServicesData() {
             await Systemd.Load(_services);
             LstService.Items = _services
                 .Select(s => $"{(s.IsActive ? "🍏" : "🍎")}  {s.DisplayName}")
@@ -92,11 +99,13 @@ namespace lotusctl {
 
         private void Pause() {
             LstService.IsEnabled = false;
+            BtnRefresh.IsEnabled = false;
             TxtOutput.Text = "...";
             EnableButtons(false);
         }
         private void Resume() {
             LstService.IsEnabled = true;
+            BtnRefresh.IsEnabled = true;
             EnableButtons(true);
         }
     }
