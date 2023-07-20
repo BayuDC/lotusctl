@@ -6,11 +6,11 @@ A simple systemd service manager.
 I made this app because I was too lazy to write `systemctl restart ...` again and again.
 I know using the terminal is cool but sometimes it gets tiring.
 
-## Screenshoot
+## 🖼️ Preview
 
 ![The App](https://media.discordapp.net/attachments/946013429200723989/1043829198088847420/image.png)
 
-## Installation
+## 📥 Installation
 
 Requirements:
 
@@ -20,21 +20,19 @@ Requirements:
 -   Windows  
     This shit already have `services.msc`
 
-### Easy Installation
+### 🙂 Easy Installation
 
 `install.sh` is comming soon.
 
-### Manual Installation
+### 💪 Manual Installation
 
 1.  Download the [lotusctl.tar.xz](https://github.com/BayuDC/lotusctl/releases)
 2.  Extract it
     ```
     $ tar -xf lotusctl.tar.xz
     ```
-3.  Move/Copy it
+3.  Copy it
     ```
-    $ sudo mv -r ./lotusctl /opt
-    # or
     $ sudo cp -r ./lotusctl /opt
     ```
 4.  Link the binary
@@ -47,12 +45,10 @@ Requirements:
     ```
 6.  Create desktop shorcut (optional)
     ```
-    $ sudo mv ./lotusctl.desktop /usr/share/applications
-    # or
     $ sudo cp ./lotusctl.desktop /usr/share/applications
     ```
 
-## Configuration
+## 🔧 Configuration
 
 Just modify the `~/.config/lotusctl/services.scv`.
 
@@ -72,7 +68,7 @@ postgresql,PostgreSQL
 docker,
 ```
 
-## Development
+## 🚧 Development
 
 1.  Clone the project
     ```
@@ -88,7 +84,7 @@ docker,
     $ dotnet run
     ```
 
-## Todo
+## 📑 Todo
 
 -   App icon
 -   Context menu
